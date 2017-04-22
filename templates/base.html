@@ -1,0 +1,25 @@
+<!doctype html>
+
+<head>
+	<title>COSC 898</title> 
+	<meta charset=utf-8>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="{{ url_for('static', filename='js/angular.js') }}"></script>
+</head>
+
+<body>
+	<div class="header">
+		<h1><a href="/">Thesis Project</a></h1>
+		</div>
+	<div class="content">
+		{% block content %}{% endblock %}
+		</div>
+	<div class="footer">
+		Created by Kyle Sherbert<br/>
+		Department of Information and Computer Science, Towson University<br/>
+		Faculty Advisor: Marius Zimand<br/>
+		Last updated: 3-11-17
+		</div>
+</body>

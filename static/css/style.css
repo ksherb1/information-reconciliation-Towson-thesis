@@ -1,0 +1,19 @@
+body {
+	background-color: lightgray;
+}
+
+.header {
+	padding: 20pt;
+	background-color: darkgray;
+}
+
+.footer {
+	padding: 20pt;
+	
+	font-size: x-small;
+}
+
+.content {
+	padding: 20pt;
+	background-color: white;
+}

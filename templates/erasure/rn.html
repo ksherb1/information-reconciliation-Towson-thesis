@@ -1,0 +1,64 @@
+<!doctype html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div ng-app="rnApp" ng-controller="rnCtrl">
+	<table>
+		<form ng-submit="simulate()">
+			<tr>
+				<td>Number of bits</td>
+				<td><input ng-model="input.n" required type="number" min="0" ng-change="updateBits()"></td>
+				</tr>
+			<tr>
+				<td>Number of erasures</td>
+				<td><input ng-model="input.t" required type="number" min="0" id="in-t"></td>
+				</tr>
+			<tr>
+				<td>Number of extra bits</td>
+				<td><input ng-model="input.d" required type="number" min="0"></td>
+				<td><button type="button" ng-click="optimize()">Auto-fill</button>
+				<td ng-if="optimize_error">Could not compute</td>
+				</tr>
+			<tr>
+				<td>Seed</td>
+				<td><input ng-model="input.seed" type="number" min="1" id="seed"></td>
+				<td><button type="button" ng-click="clear_seed()">Clear Seed</button>
+				</tr>
+			<tr>
+				<td><input type="submit" value="Run Simulation"></td>
+				</tr>
+			</form>
+		</table>
+	
+	<table ng-if="result">
+		<tr>
+			<td>Alice's String</td>
+			<td><pre ng-bind="output.x"></pre></td>
+			</tr>
+		<tr>
+			<td>Bob's String</td>
+			<td><pre ng-bind="output.y"></pre></td>
+			</tr>
+		<tr>
+			<td>Alice's Message</td>
+			<td><pre ng-bind="output.s"></pre></td>
+			</tr>
+		<tr>
+			<td>Bob's Reconstruction</td>
+			<td><pre ng-bind="output.X"></pre></td>
+			</tr>
+		<tr>
+			<td>Alice and Bob agree?</td>
+			<td><pre ng-bind="output.x == output.X"></pre></td>
+			</tr>
+		</table>
+	
+	<p ng-if="error" class="error">Python failed me. Request never made it.</p>
+	
+</div>
+
+
+
+{% endblock %}

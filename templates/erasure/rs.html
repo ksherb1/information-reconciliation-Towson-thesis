@@ -1,0 +1,66 @@
+<!doctype html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div ng-app="rsApp" ng-controller="rsCtrl">
+	<table>
+		<form ng-submit="simulate()">
+			<tr>
+				<td>Bits per character</td>
+				<td><input ng-model="input.m" required type="number" min="1" ng-change="updateBits()"></td>
+				</tr>
+			<tr>
+				<td>Number of characters</td>
+				<td><input ng-model="input.n" required type="number" min="1" id="in-n" ng-change="updateSymbols()"></td>
+				</tr>
+			<tr>
+				<td>Number of bits</td>
+				<td><input ng-model="N" type="number" readonly></td>
+				</tr>
+			<tr>
+				<td>Number of erasures</td>
+				<td><input ng-model="input.t" required type="number" min="0" id="in-t"></td>
+				</tr>
+			<tr>
+				<td>Seed</td>
+				<td><input ng-model="input.seed" type="number" min="1" id="seed"></td>
+				<td><button type="button" ng-click="clear_seed()">Clear Seed</button>
+				</tr>
+			<tr>
+				<td><input type="submit" value="Run Simulation"></td>
+				</tr>
+			</form>
+		</table>
+	
+	<table ng-if="result">
+		<tr>
+			<td>Alice's String</td>
+			<td><pre ng-bind="output.x"></pre></td>
+			</tr>
+		<tr>
+			<td>Bob's String</td>
+			<td><pre ng-bind="output.y"></pre></td>
+			</tr>
+		<tr>
+			<td>Alice's Message</td>
+			<td><pre ng-bind="output.s"></pre></td>
+			</tr>
+		<tr>
+			<td>Bob's Reconstruction</td>
+			<td><pre ng-bind="output.X"></pre></td>
+			</tr>
+		<tr>
+			<td>Alice and Bob agree?</td>
+			<td><pre ng-bind="output.x == output.X"></pre></td>
+			</tr>
+		</table>
+	
+	<p ng-if="error" class="error">Python failed me. Request never made it.</p>
+	
+</div>
+
+
+
+{% endblock %}
